@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz MVP - Вход</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="auth-page">
+    <div class="ambient-shape ambient-shape-left"></div>
+    <div class="ambient-shape ambient-shape-right"></div>
+
+    <main class="auth-layout">
+      <section class="brand-panel">
+        <p class="brand-kicker">Quiz MVP</p>
+        <h1>Проводи квизы в реальном времени</h1>
+        <p>
+          Организатор создает квиз, запускает комнату и показывает вопросы по
+          таймеру. Участники подключаются по коду комнаты и соревнуются в
+          лидерборде.
+        </p>
+        <ul class="feature-list">
+          <li>Регистрация с ролями: участник или организатор</li>
+          <li>Вопросы с одним и множественным выбором</li>
+          <li>Текстовые и графические задания</li>
+          <li>История игр в личном кабинете</li>
+        </ul>
+      </section>
+
+      <section class="card auth-card">
+        <div class="tabs" role="tablist" aria-label="Формы авторизации">
+          <button id="loginTab" class="tab-button active" type="button">
+            Вход
+          </button>
+          <button id="registerTab" class="tab-button" type="button">
+            Регистрация
+          </button>
+        </div>
+
+        <form id="loginForm" class="tab-panel active">
+          <label class="field-label" for="loginEmail">Email</label>
+          <input
+            id="loginEmail"
+            name="email"
+            type="email"
+            required
+            placeholder="you@example.com"
+          />
+
+          <label class="field-label" for="loginPassword">Пароль</label>
+          <input
+            id="loginPassword"
+            name="password"
+            type="password"
+            required
+            placeholder="Минимум 6 символов"
+          />
+
+          <button class="btn btn-primary" type="submit">Войти</button>
+        </form>
+
+        <form id="registerForm" class="tab-panel">
+          <label class="field-label" for="registerName">Имя</label>
+          <input
+            id="registerName"
+            name="name"
+            type="text"
+            required
+            placeholder="Как к вам обращаться"
+          />
+
+          <label class="field-label" for="registerEmail">Email</label>
+          <input
+            id="registerEmail"
+            name="email"
+            type="email"
+            required
+            placeholder="you@example.com"
+          />
+
+          <label class="field-label" for="registerPassword">Пароль</label>
+          <input
+            id="registerPassword"
+            name="password"
+            type="password"
+            required
+            minlength="6"
+            placeholder="Минимум 6 символов"
+          />
+
+          <label class="field-label" for="registerRole">Роль</label>
+          <select id="registerRole" name="role" required>
+            <option value="participant">Участник</option>
+            <option value="organizer">Организатор</option>
+          </select>
+
+          <button class="btn btn-primary" type="submit">Создать аккаунт</button>
+        </form>
+
+        <div id="authMessage" class="message" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <script src="/common.js"></script>
+    <script src="/index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz MVP - Игра</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="brand-kicker">Quiz MVP</p>
+        <h1 class="topbar-title">Комната: <span id="roomCodeLabel">...</span></h1>
+      </div>
+      <div class="topbar-user">
+        <a class="btn btn-ghost" href="/dashboard">В кабинет</a>
+      </div>
+    </header>
+
+    <main class="live-layout">
+      <section class="card session-meta">
+        <h2 id="sessionTitle">Загрузка...</h2>
+        <p id="sessionCategory" class="muted-text"></p>
+        <p id="sessionRules" class="muted-text"></p>
+        <p>
+          Статус: <strong id="sessionStatus">Ожидание подключения</strong>
+          <span class="timer" id="questionTimer"></span>
+        </p>
+        <div id="hostControls" class="host-controls hidden">
+          <button id="startQuizButton" class="btn btn-primary" type="button">
+            Старт квиза
+          </button>
+          <button id="finishQuizButton" class="btn btn-danger" type="button">
+            Завершить досрочно
+          </button>
+        </div>
+      </section>
+
+      <section class="card question-card">
+        <h3 id="questionMeta">Вопросы появятся после запуска</h3>
+        <p id="questionPrompt" class="question-prompt"></p>
+        <img id="questionImage" class="question-image hidden" alt="Иллюстрация к вопросу" />
+        <form id="answerForm" class="answer-grid"></form>
+        <button id="submitAnswerButton" class="btn btn-secondary" type="button">
+          Отправить ответ
+        </button>
+      </section>
+
+      <section class="card leaderboard-card">
+        <h3>Лидерборд</h3>
+        <div id="leaderboard" class="leaderboard"></div>
+      </section>
+    </main>
+
+    <div id="liveMessage" class="message floating-message" aria-live="polite"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/common.js"></script>
+    <script src="/live.js"></script>
+  </body>
+</html>

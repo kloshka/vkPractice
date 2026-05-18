@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz MVP - Личный кабинет</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="brand-kicker">Quiz MVP</p>
+        <h1 class="topbar-title">Личный кабинет</h1>
+      </div>
+      <div class="topbar-user">
+        <p id="userBadge" class="user-badge">...</p>
+        <button id="logoutButton" class="btn btn-ghost" type="button">
+          Выйти
+        </button>
+      </div>
+    </header>
+
+    <main class="dashboard-grid">
+      <section id="organizerPanel" class="panel organizer-layout hidden">
+        <h2 class="section-title">Организатор</h2>
+
+        <div class="organizer-column organizer-left">
+          <article class="card compact-card">
+            <h3>Создать квиз</h3>
+            <form id="createQuizForm" class="stacked-form">
+              <label class="field-label" for="quizTitle">Название квиза</label>
+              <input id="quizTitle" name="title" required placeholder="Например: Космос" />
+
+              <label class="field-label" for="quizCategory">Категория</label>
+              <input
+                id="quizCategory"
+                name="category"
+                required
+                placeholder="Наука, История, IT"
+              />
+
+              <label class="field-label" for="quizTime">Время на вопрос (сек.)</label>
+              <input id="quizTime" name="questionTimeSec" type="number" min="5" max="180" value="20" />
+
+              <label class="field-label" for="quizRules">Правила</label>
+              <textarea id="quizRules" name="rules" rows="3" placeholder="Короткие правила квиза"></textarea>
+
+              <button class="btn btn-primary" type="submit">Создать</button>
+            </form>
+          </article>
+
+          <article class="card compact-card">
+            <h3>Мои квизы</h3>
+            <div id="quizList" class="quiz-list"></div>
+          </article>
+        </div>
+
+        <div class="organizer-column organizer-center">
+          <article class="card compact-card">
+            <h3>Добавить вопрос</h3>
+            <form id="createQuestionForm" class="stacked-form">
+              <label class="field-label" for="questionQuizSelect">Квиз</label>
+              <select id="questionQuizSelect" name="quizId" required></select>
+
+              <label class="field-label" for="questionPrompt">Текст вопроса</label>
+              <textarea
+                id="questionPrompt"
+                name="prompt"
+                rows="3"
+                required
+                placeholder="Введите вопрос"
+              ></textarea>
+
+              <label class="field-label" for="questionImage">URL изображения (необязательно)</label>
+              <input
+                id="questionImage"
+                name="imageUrl"
+                type="url"
+                placeholder="https://..."
+              />
+
+              <label class="switch-row">
+                <input id="allowMultiple" name="allowMultiple" type="checkbox" />
+                <span>Разрешить множественный выбор</span>
+              </label>
+
+              <div id="questionChoices" class="choices-grid">
+                <label class="choice-row">
+                  <input class="choice-text" type="text" placeholder="Вариант 1" />
+                  <span>
+                    <input class="choice-correct" type="checkbox" />
+                    Верный
+                  </span>
+                </label>
+                <label class="choice-row">
+                  <input class="choice-text" type="text" placeholder="Вариант 2" />
+                  <span>
+                    <input class="choice-correct" type="checkbox" />
+                    Верный
+                  </span>
+                </label>
+                <label class="choice-row">
+                  <input class="choice-text" type="text" placeholder="Вариант 3" />
+                  <span>
+                    <input class="choice-correct" type="checkbox" />
+                    Верный
+                  </span>
+                </label>
+                <label class="choice-row">
+                  <input class="choice-text" type="text" placeholder="Вариант 4" />
+                  <span>
+                    <input class="choice-correct" type="checkbox" />
+                    Верный
+                  </span>
+                </label>
+              </div>
+
+              <button class="btn btn-secondary" type="submit">Добавить вопрос</button>
+            </form>
+          </article>
+        </div>
+      </section>
+
+      <section id="participantPanel" class="panel participant-layout hidden">
+        <h2 class="section-title">Участник</h2>
+        <article class="card compact-card participant-join-card">
+          <h3>Подключиться к квизу</h3>
+          <form id="joinRoomForm" class="stacked-form">
+            <label class="field-label" for="roomCode">Код комнаты</label>
+            <input
+              id="roomCode"
+              name="roomCode"
+              required
+              maxlength="12"
+              placeholder="Например: A1BC23"
+            />
+            <button class="btn btn-primary" type="submit">Подключиться</button>
+          </form>
+        </article>
+      </section>
+
+      <section class="panel history-panel">
+        <h2>История</h2>
+        <article class="card compact-card">
+          <div id="historyList" class="history-list"></div>
+        </article>
+      </section>
+    </main>
+
+    <div id="dashboardMessage" class="message floating-message" aria-live="polite"></div>
+
+    <script src="/common.js"></script>
+    <script src="/dashboard.js"></script>
+  </body>
+</html>
